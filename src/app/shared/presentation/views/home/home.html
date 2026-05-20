@@ -1,0 +1,54 @@
+@if (store.loading()) {
+  <mat-spinner diameter="40"></mat-spinner>
+}
+@if (store.error()) {
+  <mat-error>{{ store.error() }}</mat-error>
+}
+
+<div class="home-container">
+  <h1>Home</h1>
+  <p class="welcome-text">Welcome to Enterprise Rent-A-Car</p>
+
+  <div class="sections-wrapper">
+
+    <section class="fleet-section">
+      <h2>Fleet Utilization Analytics</h2>
+
+      <mat-grid-list cols="3" rowHeight="180px" gutterSize="16px">
+
+        <mat-grid-tile *ngFor="let type of vehicleTypes">
+
+          <mat-card class="vehicle-stat-card">
+            <mat-card-header>
+              <mat-card-title>{{ type.name }}</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <div class="stat-indicator">
+                <span class="stat-label">Daily Revenue Potential:</span>
+                <span class="stat-value">{{ type.dailyRevenuePotential | currency }}</span>
+              </div>
+
+              <div class="stat-indicator">
+                <span class="stat-label">Estimated Incident Cost:</span>
+                <span class="stat-value">{{ type.estimatedIncidentCost | currency }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+    </section>
+
+    <section class="incident-section">
+      <h2>Next Urgent Incident</h2>
+
+      <mat-card>
+        <mat-card-content>
+          <p class="no-incident-text">No urgent incidents reported at this time.</p>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+  </div>
+</div>

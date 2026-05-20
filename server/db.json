@@ -1,0 +1,297 @@
+{
+  "vehicles": [
+    {
+      "id": 501,
+      "make": "Toyota",
+      "model": "Corolla",
+      "mileageKm": 15000,
+      "dailyRate": 50.0,
+      "vehicleType": "ECONOMY",
+      "status": "RENTED"
+    },
+    {
+      "id": 502,
+      "make": "Ford",
+      "model": "Explorer",
+      "mileageKm": 45000,
+      "dailyRate": 75.0,
+      "vehicleType": "SUV",
+      "status": "AVAILABLE"
+    },
+    {
+      "id": 503,
+      "make": "Audi",
+      "model": "A4",
+      "mileageKm": 5000,
+      "dailyRate": 120.0,
+      "vehicleType": "LUXURY",
+      "status": "MAINTENANCE"
+    },
+    {
+      "id": 504,
+      "make": "Nissan",
+      "model": "Versa",
+      "mileageKm": 22000,
+      "dailyRate": 45.0,
+      "vehicleType": "ECONOMY",
+      "status": "RENTED"
+    },
+    {
+      "id": 505,
+      "make": "Jeep",
+      "model": "Cherokee",
+      "mileageKm": 18000,
+      "dailyRate": 85.0,
+      "vehicleType": "SUV",
+      "status": "RENTED"
+    },
+    {
+      "id": 506,
+      "make": "BMW",
+      "model": "Series 3",
+      "mileageKm": 12000,
+      "dailyRate": 150.0,
+      "vehicleType": "LUXURY",
+      "status": "AVAILABLE"
+    }
+  ],
+  "rentals": [
+    {
+      "id": 1001,
+      "vehicleId": 501,
+      "clientId": 201,
+      "startDate": "2025-10-10",
+      "endDate": "2025-10-18",
+      "durationDays": 8,
+      "totalCost": 400.0,
+      "status": "ACTIVE"
+    },
+    {
+      "id": 1002,
+      "vehicleId": 504,
+      "clientId": 202,
+      "startDate": "2025-10-12",
+      "endDate": "2025-10-15",
+      "durationDays": 3,
+      "totalCost": 135.0,
+      "status": "ACTIVE"
+    },
+    {
+      "id": 1003,
+      "vehicleId": 505,
+      "clientId": 203,
+      "startDate": "2025-10-15",
+      "endDate": "2025-10-20",
+      "durationDays": 5,
+      "totalCost": 425.0,
+      "status": "ACTIVE"
+    },
+    {
+      "id": 1004,
+      "vehicleId": 502,
+      "clientId": 204,
+      "startDate": "2025-10-01",
+      "endDate": "2025-10-03",
+      "durationDays": 2,
+      "totalCost": 150.0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1005,
+      "vehicleId": 501,
+      "clientId": 205,
+      "startDate": "2025-10-01",
+      "endDate": "2025-10-05",
+      "durationDays": 4,
+      "totalCost": 200.0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1006,
+      "vehicleId": 506,
+      "clientId": 206,
+      "startDate": "2025-10-20",
+      "endDate": "2025-10-22",
+      "durationDays": 2,
+      "totalCost": 300.0,
+      "status": "ACTIVE"
+    },
+    {
+      "id": 1007,
+      "vehicleId": 503,
+      "clientId": 207,
+      "startDate": "2025-10-05",
+      "endDate": "2025-10-09",
+      "durationDays": 4,
+      "totalCost": 480.0,
+      "status": "CANCELED"
+    },
+    {
+      "id": 1008,
+      "vehicleId": 504,
+      "clientId": 208,
+      "startDate": "2025-10-08",
+      "endDate": "2025-10-09",
+      "durationDays": 1,
+      "totalCost": 45.0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1009,
+      "vehicleId": 505,
+      "clientId": 209,
+      "startDate": "2025-10-01",
+      "endDate": "2025-10-05",
+      "durationDays": 4,
+      "totalCost": 340.0,
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1010,
+      "vehicleId": 502,
+      "clientId": 210,
+      "startDate": "2025-10-18",
+      "endDate": "2025-10-20",
+      "durationDays": 2,
+      "totalCost": 150.0,
+      "status": "ACTIVE"
+    }
+  ],
+  "incidents": [
+    {
+      "id": 3001,
+      "vehicleId": 501,
+      "rentalId": 1001,
+      "incidentType": "DAMAGE",
+      "registeredAt": "2025-10-12T14:30:00Z",
+      "estimatedRepairCost": 450.0,
+      "priority": "HIGH"
+    },
+    {
+      "id": 3002,
+      "vehicleId": 503,
+      "rentalId": null,
+      "incidentType": "REPAIR",
+      "registeredAt": "2025-10-01T09:00:00Z",
+      "estimatedRepairCost": 1200.0,
+      "priority": "HIGH"
+    },
+    {
+      "id": 3003,
+      "vehicleId": 504,
+      "rentalId": 1002,
+      "incidentType": "CLEANING",
+      "registeredAt": "2025-10-12T10:00:00Z",
+      "estimatedRepairCost": 50.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3004,
+      "vehicleId": 502,
+      "rentalId": 1004,
+      "incidentType": "CLEANING",
+      "registeredAt": "2025-10-03T18:00:00Z",
+      "estimatedRepairCost": 50.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3005,
+      "vehicleId": 501,
+      "rentalId": 1005,
+      "incidentType": "CLEANING",
+      "registeredAt": "2025-10-05T17:00:00Z",
+      "estimatedRepairCost": 50.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3006,
+      "vehicleId": 506,
+      "rentalId": 1006,
+      "incidentType": "CLEANING",
+      "registeredAt": "2025-10-20T08:00:00Z",
+      "estimatedRepairCost": 50.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3007,
+      "vehicleId": 503,
+      "rentalId": 1007,
+      "incidentType": "BREAKDOWN",
+      "registeredAt": "2025-10-05T11:00:00Z",
+      "estimatedRepairCost": 750.0,
+      "priority": "HIGH"
+    },
+    {
+      "id": 3008,
+      "vehicleId": 504,
+      "rentalId": 1008,
+      "incidentType": "CLEANING",
+      "registeredAt": "2025-10-09T17:30:00Z",
+      "estimatedRepairCost": 50.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3009,
+      "vehicleId": 505,
+      "rentalId": 1009,
+      "incidentType": "CLEANING",
+      "registeredAt": "2025-10-05T19:00:00Z",
+      "estimatedRepairCost": 50.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3010,
+      "vehicleId": 501,
+      "rentalId": 1001,
+      "incidentType": "CLEANING",
+      "registeredAt": "2025-10-10T00:00:00Z",
+      "estimatedRepairCost": 50.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3011,
+      "vehicleId": 502,
+      "rentalId": 1010,
+      "incidentType": "CLEANING",
+      "registeredAt": "2025-10-18T09:00:00Z",
+      "estimatedRepairCost": 50.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3012,
+      "vehicleId": 505,
+      "rentalId": 1003,
+      "incidentType": "DAMAGE",
+      "registeredAt": "2025-10-16T10:00:00Z",
+      "estimatedRepairCost": 300.0,
+      "priority": "HIGH"
+    },
+    {
+      "id": 3013,
+      "vehicleId": 504,
+      "rentalId": 1002,
+      "incidentType": "DAMAGE",
+      "registeredAt": "2025-10-14T12:00:00Z",
+      "estimatedRepairCost": 800.0,
+      "priority": "HIGH"
+    },
+    {
+      "id": 3014,
+      "vehicleId": 502,
+      "rentalId": null,
+      "incidentType": "REPAIR",
+      "registeredAt": "2025-10-05T15:00:00Z",
+      "estimatedRepairCost": 400.0,
+      "priority": "NORMAL"
+    },
+    {
+      "id": 3015,
+      "vehicleId": 501,
+      "rentalId": 1005,
+      "incidentType": "DAMAGE",
+      "registeredAt": "2025-10-04T07:00:00Z",
+      "estimatedRepairCost": 150.0,
+      "priority": "NORMAL"
+    }
+  ]
+}
