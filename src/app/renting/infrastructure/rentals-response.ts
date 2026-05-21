@@ -13,9 +13,9 @@ export interface RentalResource extends BaseResource {
   id: number;
   vehicleId: number;
   clientId: number;
-  startDate: Date;
-  endDate: Date;
-  durationsDay: number;
+  startDate: string;
+  endDate: string;
+  durationDays: number;
   totalCost: number;
   status: string;
 

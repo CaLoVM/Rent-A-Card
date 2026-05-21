@@ -38,6 +38,9 @@ export class RentingStore {
   getVehicleById(id: number | null | undefined): Signal<Vehicle | undefined> {
     return computed(() => (id ? this.vehicles().find((c) => c.id === id) : undefined));
   }
+  getRentalById(id: number | null | undefined): Signal<Rental | undefined> {
+    return computed(() => (id ? this.rentals().find((c) => c.id === id) : undefined));
+  }
 
   /**
    * Adds a new rental.
@@ -51,7 +54,7 @@ export class RentingStore {
       .pipe(retry(2))
       .subscribe({
         next: (createdRental) => {
-          //this.assignVehicleToRental(createdRental);
+          this.assignVehicleToRental(createdRental);
           this.rentalsSignal.update((rentals) => [...rentals, createdRental]);
           this.loadingSignal.set(false);
         },
@@ -176,7 +179,17 @@ export class RentingStore {
         },
       });
   }
+  private assignVehicleToRental(rental: Rental): Rental {
+    const vehicleId = rental.vehicleId ?? 0;
+    rental.vehicle = vehicleId ? (this.getVehicleById(vehicleId)() ?? null) : null;
+    return rental;
+  }
 
+  private assignVehiclesToRentals(): void {
+    this.rentalsSignal.update((rentals) =>
+      rentals.map((rental) => this.assignVehicleToRental(rental)),
+    );
+  }
   /**
    * Loads all rentals from the API.
    */
@@ -191,7 +204,7 @@ export class RentingStore {
           console.log(rentals);
           this.rentalsSignal.set(rentals);
           this.loadingSignal.set(false);
-          //this.assignVehiclesToRentals();
+          this.assignVehiclesToRentals();
         },
         error: (err) => {
           this.errorSignal.set(this.formatError(err, 'Failed to load rentals'));
@@ -227,23 +240,28 @@ export class RentingStore {
   //}
 
   calculateRentedDailyRateByType(vehicles: Vehicle[]): Record<string, number> {
-    return vehicles
-      // 1. Filtramos solo los que tienen status "RENTED"
-      .filter(vehicle => vehicle.status === 'RENTED')
-      // 2. Agrupamos y sumamos el dailyRate
-      .reduce((acc, vehicle) => {
-        const type = vehicle.vehicleType;
+    return (
+      vehicles
+        // 1. Filtramos solo los que tienen status "RENTED"
+        .filter((vehicle) => vehicle.status === 'RENTED')
+        // 2. Agrupamos y sumamos el dailyRate
+        .reduce(
+          (acc, vehicle) => {
+            const type = vehicle.vehicleType;
 
-        // Si el tipo de vehículo aún no existe en nuestro acumulador, lo inicializamos en 0
-        if (!acc[type]) {
-          acc[type] = 0;
-        }
+            // Si el tipo de vehículo aún no existe en nuestro acumulador, lo inicializamos en 0
+            if (!acc[type]) {
+              acc[type] = 0;
+            }
 
-        // Sumamos el dailyRate al tipo correspondiente
-        acc[type] += vehicle.dailyRate;
+            // Sumamos el dailyRate al tipo correspondiente
+            acc[type] += vehicle.dailyRate;
 
-        return acc;
-      }, {} as Record<string, number>);
+            return acc;
+          },
+          {} as Record<string, number>,
+        )
+    );
   }
   /**
   private assignVehiclesToRentals(): void {
@@ -267,6 +285,7 @@ export class RentingStore {
    * @param fallback - The fallback error message.
    * @returns A formatted error message.
    */
+
   private formatError(error: any, fallback: string): string {
     if (error instanceof Error) {
       return error.message.includes('Resource not found')

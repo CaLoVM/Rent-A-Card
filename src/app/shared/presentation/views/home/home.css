@@ -41,7 +41,27 @@ h2 {
 mat-card-header {
   margin-bottom: 12px;
 }
+mat-card-footer{
+  /* Espaciado interno para alinear con el resto del card */
+  padding: 8px 16px 16px 16px;
 
+  /* Flexbox para alinear el contenido del footer (ej. botones a la derecha) */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  /* Separación visual sutil del contenido principal */
+  border-top: 1px solid #f0f0f0;
+
+  /* Empuja el footer siempre hacia el fondo del card */
+  margin-top: auto;
+
+  /* Elimina márgenes extra que Angular Material pueda aplicar por defecto */
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+
+}
 .stat-indicator {
   display: flex;
   justify-content: space-between;

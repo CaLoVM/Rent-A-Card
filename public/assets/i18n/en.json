@@ -1,10 +1,8 @@
 {
-  "option": {
-    "home": "Home",
-    "about": "About Us",
-    "categories": "Categories",
-    "courses": "Courses"
-  },
+"option": {
+  "home": "Home",
+  "new-rental": "New Rental"
+},
   "about": {
     "title": "About us",
     "content": "ACME Learning Center is an Education Platform, part of ACME Corporation."

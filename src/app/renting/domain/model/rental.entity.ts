@@ -5,9 +5,9 @@ export class Rental implements BaseEntity {
   private _id: number;
   private _vehicleId: number;
   private _clientId: number;
-  private _startDate: Date;
-  private _endDate: Date;
-  private _durationsDay: number;
+  private _startDate: string;
+  private _endDate: string;
+  private _durationDays: number;
   private _totalCost: number;
   private _status: string;
 
@@ -17,9 +17,9 @@ export class Rental implements BaseEntity {
     id: number;
     vehicleId: number;
     clientId: number;
-    startDate: Date;
-    endDate: Date;
-    durationsDay: number;
+    startDate: string;
+    endDate: string;
+    durationDays: number;
     totalCost: number;
     status: string;
     vehicle?: Vehicle | null;
@@ -29,7 +29,7 @@ export class Rental implements BaseEntity {
     this._clientId = rental.clientId;
     this._startDate = rental.startDate;
     this._endDate = rental.endDate;
-    this._durationsDay = rental.durationsDay;
+    this._durationDays = rental.durationDays;
     this._totalCost = rental.totalCost;
     this._status = rental.status;
     this._vehicle = rental.vehicle ?? null;
@@ -54,23 +54,23 @@ export class Rental implements BaseEntity {
     this._clientId = value;
   }
 
-  get startDate(): Date {
+  get startDate(): string {
     return this._startDate;
   }
-  set startDate(value: Date) {
+  set startDate(value: string) {
     this._startDate = value;
   }
-  get endDate(): Date {
+  get endDate(): string {
     return this._endDate;
   }
-  set endDate(value: Date) {
+  set endDate(value: string) {
     this._endDate = value;
   }
-  get durationsDay(): number {
-    return this._durationsDay;
+  get durationDays(): number {
+    return this._durationDays;
   }
-  set durationsDay(value: number) {
-    this._durationsDay = value;
+  set durationsDays(value: number) {
+    this._durationDays = value;
   }
   get totalCost(): number {
     return this._totalCost;

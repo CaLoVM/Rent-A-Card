@@ -19,7 +19,8 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAppInitializer(() => {
       const translate = inject(TranslateService);
-      translate.use(translate.getBrowserLang() || "en");
+      translate.setDefaultLang('en');
+      translate.use('en');
     })
   ]
 

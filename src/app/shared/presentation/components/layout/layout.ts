@@ -26,7 +26,7 @@ export class Layout {
   options = [
     { link: '/home', label: 'option.home' },
 
-    { link: '/renting/vehicles', label: 'option.vehicles' },
+    { link: '/renting/rentals/new', label: 'option.new-rental' },
    // { link: '/learning/courses', label: 'option.courses' },
   ];
 }

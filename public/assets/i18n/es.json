@@ -1,9 +1,7 @@
 {
   "option": {
     "home": "Inicio",
-    "about": "Acerca de",
-    "categories": "Categorías",
-    "courses": "Cursos"
+    "new-rental": "Nueva Renta"
   },
   "about": {
     "title": "Acerca de nosotros",

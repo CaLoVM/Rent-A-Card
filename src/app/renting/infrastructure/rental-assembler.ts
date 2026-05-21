@@ -27,7 +27,7 @@ export class RentalAssembler implements BaseAssembler<Rental, RentalResource, Re
       clientId: resource.clientId,
       startDate: resource.startDate,
       endDate: resource.endDate,
-      durationsDay: resource.durationsDay,
+      durationDays: resource.durationDays,
       totalCost: resource.totalCost,
       status: resource.status,
     });
@@ -41,11 +41,11 @@ export class RentalAssembler implements BaseAssembler<Rental, RentalResource, Re
   toResourceFromEntity(entity: Rental): RentalResource {
     return {
       id: entity.id,
-
+      vehicleId: entity.vehicleId,
       clientId: entity.clientId,
       startDate: entity.startDate,
       endDate: entity.endDate,
-      durationsDay: entity.durationsDay,
+      durationDays: entity.durationDays,
       totalCost: entity.totalCost,
       status: entity.status,
     } as RentalResource;

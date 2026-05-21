@@ -5,7 +5,7 @@
       "make": "Toyota",
       "model": "Corolla",
       "mileageKm": 15000,
-      "dailyRate": 50.0,
+      "dailyRate": 50,
       "vehicleType": "ECONOMY",
       "status": "RENTED"
     },
@@ -14,7 +14,7 @@
       "make": "Ford",
       "model": "Explorer",
       "mileageKm": 45000,
-      "dailyRate": 75.0,
+      "dailyRate": 75,
       "vehicleType": "SUV",
       "status": "AVAILABLE"
     },
@@ -23,7 +23,7 @@
       "make": "Audi",
       "model": "A4",
       "mileageKm": 5000,
-      "dailyRate": 120.0,
+      "dailyRate": 120,
       "vehicleType": "LUXURY",
       "status": "MAINTENANCE"
     },
@@ -32,7 +32,7 @@
       "make": "Nissan",
       "model": "Versa",
       "mileageKm": 22000,
-      "dailyRate": 45.0,
+      "dailyRate": 45,
       "vehicleType": "ECONOMY",
       "status": "RENTED"
     },
@@ -41,7 +41,7 @@
       "make": "Jeep",
       "model": "Cherokee",
       "mileageKm": 18000,
-      "dailyRate": 85.0,
+      "dailyRate": 85,
       "vehicleType": "SUV",
       "status": "RENTED"
     },
@@ -50,7 +50,7 @@
       "make": "BMW",
       "model": "Series 3",
       "mileageKm": 12000,
-      "dailyRate": 150.0,
+      "dailyRate": 150,
       "vehicleType": "LUXURY",
       "status": "AVAILABLE"
     }
@@ -63,7 +63,7 @@
       "startDate": "2025-10-10",
       "endDate": "2025-10-18",
       "durationDays": 8,
-      "totalCost": 400.0,
+      "totalCost": 400,
       "status": "ACTIVE"
     },
     {
@@ -73,7 +73,7 @@
       "startDate": "2025-10-12",
       "endDate": "2025-10-15",
       "durationDays": 3,
-      "totalCost": 135.0,
+      "totalCost": 135,
       "status": "ACTIVE"
     },
     {
@@ -83,7 +83,7 @@
       "startDate": "2025-10-15",
       "endDate": "2025-10-20",
       "durationDays": 5,
-      "totalCost": 425.0,
+      "totalCost": 425,
       "status": "ACTIVE"
     },
     {
@@ -93,7 +93,7 @@
       "startDate": "2025-10-01",
       "endDate": "2025-10-03",
       "durationDays": 2,
-      "totalCost": 150.0,
+      "totalCost": 150,
       "status": "COMPLETED"
     },
     {
@@ -103,7 +103,7 @@
       "startDate": "2025-10-01",
       "endDate": "2025-10-05",
       "durationDays": 4,
-      "totalCost": 200.0,
+      "totalCost": 200,
       "status": "COMPLETED"
     },
     {
@@ -113,7 +113,7 @@
       "startDate": "2025-10-20",
       "endDate": "2025-10-22",
       "durationDays": 2,
-      "totalCost": 300.0,
+      "totalCost": 300,
       "status": "ACTIVE"
     },
     {
@@ -123,7 +123,7 @@
       "startDate": "2025-10-05",
       "endDate": "2025-10-09",
       "durationDays": 4,
-      "totalCost": 480.0,
+      "totalCost": 480,
       "status": "CANCELED"
     },
     {
@@ -133,7 +133,7 @@
       "startDate": "2025-10-08",
       "endDate": "2025-10-09",
       "durationDays": 1,
-      "totalCost": 45.0,
+      "totalCost": 45,
       "status": "COMPLETED"
     },
     {
@@ -143,7 +143,7 @@
       "startDate": "2025-10-01",
       "endDate": "2025-10-05",
       "durationDays": 4,
-      "totalCost": 340.0,
+      "totalCost": 340,
       "status": "COMPLETED"
     },
     {
@@ -153,7 +153,7 @@
       "startDate": "2025-10-18",
       "endDate": "2025-10-20",
       "durationDays": 2,
-      "totalCost": 150.0,
+      "totalCost": 150,
       "status": "ACTIVE"
     }
   ],
@@ -164,7 +164,7 @@
       "rentalId": 1001,
       "incidentType": "DAMAGE",
       "registeredAt": "2025-10-12T14:30:00Z",
-      "estimatedRepairCost": 450.0,
+      "estimatedRepairCost": 450,
       "priority": "HIGH"
     },
     {
@@ -173,7 +173,7 @@
       "rentalId": null,
       "incidentType": "REPAIR",
       "registeredAt": "2025-10-01T09:00:00Z",
-      "estimatedRepairCost": 1200.0,
+      "estimatedRepairCost": 1200,
       "priority": "HIGH"
     },
     {
@@ -182,7 +182,7 @@
       "rentalId": 1002,
       "incidentType": "CLEANING",
       "registeredAt": "2025-10-12T10:00:00Z",
-      "estimatedRepairCost": 50.0,
+      "estimatedRepairCost": 50,
       "priority": "NORMAL"
     },
     {
@@ -191,7 +191,7 @@
       "rentalId": 1004,
       "incidentType": "CLEANING",
       "registeredAt": "2025-10-03T18:00:00Z",
-      "estimatedRepairCost": 50.0,
+      "estimatedRepairCost": 50,
       "priority": "NORMAL"
     },
     {
@@ -200,7 +200,7 @@
       "rentalId": 1005,
       "incidentType": "CLEANING",
       "registeredAt": "2025-10-05T17:00:00Z",
-      "estimatedRepairCost": 50.0,
+      "estimatedRepairCost": 50,
       "priority": "NORMAL"
     },
     {
@@ -209,7 +209,7 @@
       "rentalId": 1006,
       "incidentType": "CLEANING",
       "registeredAt": "2025-10-20T08:00:00Z",
-      "estimatedRepairCost": 50.0,
+      "estimatedRepairCost": 50,
       "priority": "NORMAL"
     },
     {
@@ -218,7 +218,7 @@
       "rentalId": 1007,
       "incidentType": "BREAKDOWN",
       "registeredAt": "2025-10-05T11:00:00Z",
-      "estimatedRepairCost": 750.0,
+      "estimatedRepairCost": 750,
       "priority": "HIGH"
     },
     {
@@ -227,7 +227,7 @@
       "rentalId": 1008,
       "incidentType": "CLEANING",
       "registeredAt": "2025-10-09T17:30:00Z",
-      "estimatedRepairCost": 50.0,
+      "estimatedRepairCost": 50,
       "priority": "NORMAL"
     },
     {
@@ -236,7 +236,7 @@
       "rentalId": 1009,
       "incidentType": "CLEANING",
       "registeredAt": "2025-10-05T19:00:00Z",
-      "estimatedRepairCost": 50.0,
+      "estimatedRepairCost": 50,
       "priority": "NORMAL"
     },
     {
@@ -245,7 +245,7 @@
       "rentalId": 1001,
       "incidentType": "CLEANING",
       "registeredAt": "2025-10-10T00:00:00Z",
-      "estimatedRepairCost": 50.0,
+      "estimatedRepairCost": 50,
       "priority": "NORMAL"
     },
     {
@@ -254,7 +254,7 @@
       "rentalId": 1010,
       "incidentType": "CLEANING",
       "registeredAt": "2025-10-18T09:00:00Z",
-      "estimatedRepairCost": 50.0,
+      "estimatedRepairCost": 50,
       "priority": "NORMAL"
     },
     {
@@ -263,7 +263,7 @@
       "rentalId": 1003,
       "incidentType": "DAMAGE",
       "registeredAt": "2025-10-16T10:00:00Z",
-      "estimatedRepairCost": 300.0,
+      "estimatedRepairCost": 300,
       "priority": "HIGH"
     },
     {
@@ -272,7 +272,7 @@
       "rentalId": 1002,
       "incidentType": "DAMAGE",
       "registeredAt": "2025-10-14T12:00:00Z",
-      "estimatedRepairCost": 800.0,
+      "estimatedRepairCost": 800,
       "priority": "HIGH"
     },
     {
@@ -281,7 +281,7 @@
       "rentalId": null,
       "incidentType": "REPAIR",
       "registeredAt": "2025-10-05T15:00:00Z",
-      "estimatedRepairCost": 400.0,
+      "estimatedRepairCost": 400,
       "priority": "NORMAL"
     },
     {
@@ -290,7 +290,7 @@
       "rentalId": 1005,
       "incidentType": "DAMAGE",
       "registeredAt": "2025-10-04T07:00:00Z",
-      "estimatedRepairCost": 150.0,
+      "estimatedRepairCost": 150,
       "priority": "NORMAL"
     }
   ]
