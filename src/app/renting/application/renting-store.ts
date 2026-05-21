@@ -263,21 +263,7 @@ export class RentingStore {
         )
     );
   }
-  /**
-  private assignVehiclesToRentals(): void {
-    this.rentalsSignal.update((rentals) =>
-      rentals.map((rental) => this.assignVehicleToRental(rental)),
-    );
-  }
 
-  private assignVehicleToRental(rental: Rental): Rental {
-    const vehicleId = rental.vehicleId ?? 0;
-    const vehicle = vehicleId
-      ? (this.vehicles().find((cat) => cat.id === vehicleId) ?? null)
-      : null;
-    return { ...rental, vehicle } as Rental;
-  }
-   */
 
   /**
    * Formats error messages for user-friendly display.

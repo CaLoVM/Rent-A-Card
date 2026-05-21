@@ -6,13 +6,13 @@
 }
 
 <div class="home-container">
-  <h1>Home</h1>
-  <p class="welcome-text">Welcome to Enterprise Rent-A-Car</p>
+  <h1>{{ 'home.title'| translate }}</h1>
+  <p class="welcome-text">{{ 'home.content'| translate }}</p>
 
   <div class="sections-wrapper">
 
     <section class="fleet-section">
-      <h2>Fleet Utilization Analytics</h2>
+      <h2>{{ 'home.sub-title-1'| translate }}</h2>
 
       <mat-grid-list cols="3" rowHeight="180px" gutterSize="16px">
 
@@ -25,17 +25,17 @@
 
             <mat-card-content>
               <div class="stat-indicator">
-                <span class="stat-label">Daily Revenue Potential:</span>
+                <span class="stat-label">{{ 'home.card-content-1'| translate }}</span>
                 <span class="stat-value">{{ type.dailyRevenuePotential | currency }}</span>
               </div>
 
               <div class="stat-indicator">
-                <span class="stat-label">Estimated Incident Cost:</span>
+                <span class="stat-label">{{ 'home.card-content-2'| translate }}</span>
                 <span class="stat-value">{{ type.estimatedIncidentCost | currency }}</span>
               </div>
             </mat-card-content>
             <mat-card-footer>
-              <p>Vehicles Rented = 0</p>
+              <p>{{ 'home.card-footer'| translate }}</p>
             </mat-card-footer>
           </mat-card>
 
@@ -44,7 +44,7 @@
     </section>
 
     <section class="incident-section">
-      <h2>Next Urgent Incident</h2>
+      <h2>{{ 'home.sub-title-2'| translate }}</h2>
 
       <mat-card>
         <mat-card-content>

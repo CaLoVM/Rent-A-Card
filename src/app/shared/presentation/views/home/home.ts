@@ -8,10 +8,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatError } from '@angular/material/form-field';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { RentingStore } from '../../../../renting/application/renting-store';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
-  imports: [MatGridListModule, MatCardModule, CommonModule, MatError, MatProgressSpinner],
+  imports: [
+    MatGridListModule,
+    MatCardModule,
+    CommonModule,
+    MatError,
+    MatProgressSpinner,
+    TranslatePipe,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

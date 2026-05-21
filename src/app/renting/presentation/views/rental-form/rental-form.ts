@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-rental-form',
@@ -17,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     ReactiveFormsModule,
     MatSelectModule,
+    TranslatePipe,
   ],
   templateUrl: './rental-form.html',
   styleUrl: './rental-form.css',
@@ -28,12 +30,15 @@ export class RentalForm {
   private store = inject(RentingStore);
 
   form = this.fb.group({
-    vehicleId: new FormControl<number| null>(null, { nonNullable: true, validators: [Validators.required] }),
+    vehicleId: new FormControl<number | null>(null, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     clientId: new FormControl<number | null>(null),
     durationDays: new FormControl<number | null>(null),
   });
-  vehicles=this.store.vehicles;
-  rentals=this.store.rentals;
+  vehicles = this.store.vehicles;
+  rentals = this.store.rentals;
   isEdit = false;
   rentalId: number | null = null;
 
@@ -48,7 +53,6 @@ export class RentalForm {
             vehicleId: rental.vehicleId,
             clientId: rental.clientId,
             durationDays: rental.durationDays,
-
           });
         }
       }
@@ -79,6 +83,6 @@ export class RentalForm {
       this.store.addRental(rental);
     }
 
-    this.router.navigate(["/home"]).then();
+    this.router.navigate(['/home']).then();
   }
 }

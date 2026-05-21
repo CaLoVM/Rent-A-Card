@@ -1,15 +1,17 @@
 {
-"option": {
-  "home": "Home",
-  "new-rental": "New Rental"
-},
-  "about": {
-    "title": "About us",
-    "content": "ACME Learning Center is an Education Platform, part of ACME Corporation."
+  "option": {
+    "home": "Home",
+    "new-rental": "New Rental"
   },
+
   "home": {
-    "title": "Welcome",
-    "content": "Welcome to ACME Learning Center."
+    "title": "Home",
+    "content": "Welcome to Enterprise Rent-A-Car .",
+    "sub-title-1": "Fleet Utilization Analytics",
+    "sub-title-2": "Next Urgent Incident",
+    "card-content-1": "Daily Revenue Potential:",
+    "card-content-2": "Estimated Incident Cost:",
+    "card-footer": "Vehicles Rented = 0"
   },
   "page-not-found": {
     "title": "Page not found",
@@ -20,5 +22,14 @@
     "rights": "All rights reserved.",
     "powered-by": "Powered by",
     "and": "and"
+  },
+  "new-rental": {
+    "client-id": "Client ID",
+    "vehicle-id": "Vehicle ID",
+    "duration-days": "Duration Days",
+    "create-rental": "Create Rental",
+    "cancel": "Cancel",
+    "title": "New Rental",
+    "sub-title": "Create a New Rental Contract"
   }
 }
