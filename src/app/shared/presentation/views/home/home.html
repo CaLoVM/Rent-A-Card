@@ -7,9 +7,6 @@
 
 <div class="home-container">
   <h1>{{ 'home.title'| translate }}</h1>
-  <p>Total Economy Daily Rate: {{ totalEconomyDailyRate() | currency }}</p>
-  <p>Total Economy Weighted Repair Cost: {{ totalEconomyWeightedRepairCost() | currency }}</p>
-  <p>Total Economy Rented Vehicles: {{ totalEconomyRentedCount() }}</p>
   <p class="welcome-text">{{ 'home.content'| translate }}</p>
 
   <div class="sections-wrapper">
@@ -17,9 +14,7 @@
     <section class="fleet-section">
       <h2>{{ 'home.sub-title-1'| translate }}</h2>
 
-      <mat-grid-list cols="3" rowHeight="180px" gutterSize="16px">
-
-        <mat-grid-tile >
+      <div class="stats-grid">
 
           <mat-card class="vehicle-stat-card">
             <mat-card-header>
@@ -43,8 +38,51 @@
             </mat-card-footer>
           </mat-card>
 
-        </mat-grid-tile>
-      </mat-grid-list>
+          <mat-card class="vehicle-stat-card">
+            <mat-card-header>
+              <mat-card-title>SUV</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <div class="stat-indicator">
+                <span class="stat-label">{{ 'home.card-content-1'| translate }}</span>
+                <span class="stat-value">{{ totalSuvDailyRate() | currency }}</span>
+              </div>
+
+              <div class="stat-indicator">
+                <span class="stat-label">{{ 'home.card-content-2'| translate }}</span>
+                <span class="stat-value">{{ totalSuvWeightedRepairCost() | currency }}</span>
+              </div>
+            </mat-card-content>
+            <mat-card-footer>
+              <p>{{ 'home.card-footer'| translate }}</p>
+              <span class="stat-value">{{ totalSuvRentedCount() }}</span>
+            </mat-card-footer>
+          </mat-card>
+
+          <mat-card class="vehicle-stat-card">
+            <mat-card-header>
+              <mat-card-title>LUXURY</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <div class="stat-indicator">
+                <span class="stat-label">{{ 'home.card-content-1'| translate }}</span>
+                <span class="stat-value">{{ totalLuxuryDailyRate() | currency }}</span>
+              </div>
+
+              <div class="stat-indicator">
+                <span class="stat-label">{{ 'home.card-content-2'| translate }}</span>
+                <span class="stat-value">{{ totalLuxuryWeightedRepairCost() | currency }}</span>
+              </div>
+            </mat-card-content>
+            <mat-card-footer>
+              <p>{{ 'home.card-footer'| translate }}</p>
+              <span class="stat-value">{{ totalLuxuryRentedCount() }}</span>
+            </mat-card-footer>
+          </mat-card>
+
+      </div>
     </section>
 
     <section class="incident-section">

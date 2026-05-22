@@ -27,16 +27,17 @@ export class Home {
   readonly store = inject(OperationsStore);
   protected router = inject(Router);
 
-  displayedColumns: string[] = ['id', 'make', 'actions'];
 
   totalEconomyDailyRate = this.store.getTotalRentedDailyRateByVehicleType('ECONOMY');
   totalEconomyWeightedRepairCost = this.store.getWeightedRepairCostByVehicleType('ECONOMY');
   totalEconomyRentedCount = this.store.getRentedVehicleCountByType('ECONOMY');
+  totalSuvDailyRate = this.store.getTotalRentedDailyRateByVehicleType('SUV');
+  totalSuvWeightedRepairCost = this.store.getWeightedRepairCostByVehicleType('SUV');
+  totalSuvRentedCount = this.store.getRentedVehicleCountByType('SUV');
+  totalLuxuryDailyRate = this.store.getTotalRentedDailyRateByVehicleType('LUXURY');
+  totalLuxuryWeightedRepairCost = this.store.getWeightedRepairCostByVehicleType('LUXURY');
+  totalLuxuryRentedCount = this.store.getRentedVehicleCountByType('LUXURY');
+
   mostRecentNormalIncident = this.store.getMostRecentNormalIncident();
 
-  vehicleTypes = [
-    { name: 'Economy', dailyRevenuePotential: 45.0, estimatedIncidentCost: 250.0 },
-    { name: 'SUV', dailyRevenuePotential: 120.0, estimatedIncidentCost: 800.0 },
-    { name: 'Luxury', dailyRevenuePotential: 85.0, estimatedIncidentCost: 400.0 },
-  ];
 }

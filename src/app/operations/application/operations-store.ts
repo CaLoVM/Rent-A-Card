@@ -248,6 +248,30 @@ export class OperationsStore {
         },
       });
   }
+
+  /**
+   * Adds a new incident.
+   * @param incident - The incident to add.
+   */
+  addIncident(incident: Incident): void {
+    this.loadingSignal.set(true);
+    this.errorSignal.set(null);
+    this.operationsApi
+      .createIncident(incident)
+      .pipe(retry(2))
+      .subscribe({
+        next: (createdIncident) => {
+          this.assignVehicleToIncident(createdIncident);
+          this.incidentsSignal.update((incidents) => [...incidents, createdIncident]);
+          this.loadingSignal.set(false);
+        },
+        error: (err) => {
+          this.errorSignal.set(this.formatError(err, 'Failed to create incident'));
+          this.loadingSignal.set(false);
+        },
+      });
+  }
+
   private assignVehicleToRental(rental: Rental): Rental {
     const vehicleId = rental.vehicleId ?? 0;
     rental.vehicle = vehicleId ? (this.getVehicleById(vehicleId)() ?? null) : null;

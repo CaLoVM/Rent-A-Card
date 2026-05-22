@@ -25,6 +25,15 @@
   letter-spacing: -2px;
 }
 
+@media (max-width: 600px) {
+  .container-with-spacing h1 {
+    font-size: 3rem;
+  }
+
+  .container-with-spacing div {
+    font-size: 1rem;
+  }
+}
 
 .container-with-spacing div {
   font-size: 1.25rem;
@@ -32,8 +41,8 @@
   line-height: 1.6;
 }
 
-
 .container-with-spacing ::ng-deep strong,
+
 .container-with-spacing ::ng-deep span {
   color: #f44336;
   background-color: #ffebee;

@@ -155,17 +155,8 @@
       "durationDays": 2,
       "totalCost": 150,
       "status": "ACTIVE"
-    },
-    {
-      "id": 1011,
-      "vehicleId": 503,
-      "clientId": 700,
-      "startDate": "",
-      "endDate": "",
-      "durationDays": 7,
-      "totalCost": 0,
-      "status": "ACTIVE"
     }
+
   ],
   "incidents": [
     {
