@@ -1,5 +1,5 @@
 import { BaseEntity } from '../../../shared/infrastructure/base-entity';
-import { Vehicle } from './vehicle.entity';
+import { Vehicle } from '../../../masters/domain/model/vehicle.entity';
 import { Rental } from './rental.entity';
 
 export class Incident implements BaseEntity {

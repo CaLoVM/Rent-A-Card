@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { computed, Signal, signal } from '@angular/core';
 import { Rental } from '../domain/model/rental.entity';
-import { Vehicle } from '../domain/model/vehicle.entity';
-import { RentingApi } from '../infrastructure/renting-api';
+import { Vehicle } from '../../masters/domain/model/vehicle.entity';
+import { OperationsApi } from '../infrastructure/operations-api';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RentingStore {
+export class OperationsStore {
   private readonly rentalsSignal = signal<Rental[]>([]);
   private readonly vehiclesSignal = signal<Vehicle[]>([]);
 
@@ -25,7 +25,7 @@ export class RentingStore {
   readonly rentalCount = computed(() => this.rentals().length);
   readonly vehicleCount = computed(() => this.vehicles().length);
 
-  constructor(private rentingApi: RentingApi) {
+  constructor(private operationsApi: OperationsApi) {
     this.loadVehicles();
     this.loadRentals();
   }
@@ -49,7 +49,7 @@ export class RentingStore {
   addRental(rental: Rental): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.rentingApi
+    this.operationsApi
       .createRental(rental)
       .pipe(retry(2))
       .subscribe({
@@ -72,7 +72,7 @@ export class RentingStore {
   updateRental(updatedRental: Rental): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.rentingApi
+    this.operationsApi
       .updateRental(updatedRental)
       .pipe(retry(2))
       .subscribe({
@@ -97,7 +97,7 @@ export class RentingStore {
   deleteRental(id: number): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.rentingApi
+    this.operationsApi
       .deleteRental(id)
       .pipe(retry(2))
       .subscribe({
@@ -119,7 +119,7 @@ export class RentingStore {
   addVehicle(vehicle: Vehicle): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.rentingApi
+    this.operationsApi
       .createVehicle(vehicle)
       .pipe(retry(2))
       .subscribe({
@@ -141,7 +141,7 @@ export class RentingStore {
   updateVehicle(updatedVehicle: Vehicle): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.rentingApi
+    this.operationsApi
       .updateVehicle(updatedVehicle)
       .pipe(retry(2))
       .subscribe({
@@ -165,7 +165,7 @@ export class RentingStore {
   deleteVehicle(id: number): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.rentingApi
+    this.operationsApi
       .deleteVehicle(id)
       .pipe(retry(2))
       .subscribe({
@@ -196,7 +196,7 @@ export class RentingStore {
   private loadRentals(): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.rentingApi
+    this.operationsApi
       .getRentals()
       .pipe(takeUntilDestroyed())
       .subscribe({
@@ -219,7 +219,7 @@ export class RentingStore {
   private loadVehicles(): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.rentingApi
+    this.operationsApi
       .getVehicles()
       .pipe(takeUntilDestroyed())
       .subscribe({

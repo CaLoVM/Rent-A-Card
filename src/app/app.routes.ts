@@ -10,9 +10,9 @@ export const routes: Routes = [
   { path: 'home', component: Home, title: `${baseTitle} - Home` },
 
   {
-    path: 'renting',
+    path: 'operations',
     loadChildren: () =>
-      import('./renting/presentation/views/renting.routes').then((m) => m.rentingRoutes),
+      import('./operations/presentation/views/operations.routes').then((m) => m.operationsRoutes),
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', loadComponent: pageNotFound, title: `${baseTitle} - Page Not Found` },

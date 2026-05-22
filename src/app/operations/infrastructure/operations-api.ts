@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { BaseApi } from '../../shared/infrastructure/base-api';
 import { Rental } from '../domain/model/rental.entity';
 import { Incident } from '../domain/model/incident.entity';
-import { Vehicle } from '../domain/model/vehicle.entity';
+import { Vehicle } from '../../masters/domain/model/vehicle.entity';
 import { HttpClient } from '@angular/common/http';
 import { RentalsApiEndpoint } from './rentals-api-endpoint';
-import { VehiclesApiEndpoint } from './vehicles-api-endpoint';
+import { VehiclesApiEndpoint } from '../../masters/infrastructure/vehicles-api-endpoint';
 import { IncidentsApiEndpoint } from './incidents-api-endpoint';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RentingApi extends BaseApi {
+export class OperationsApi extends BaseApi {
   private readonly rentalsEndpoint: RentalsApiEndpoint;
   private readonly vehiclesEndpoint: VehiclesApiEndpoint;
   private readonly incidentsEndpoint: IncidentsApiEndpoint;

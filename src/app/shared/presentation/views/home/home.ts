@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatError } from '@angular/material/form-field';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { RentingStore } from '../../../../renting/application/renting-store';
+import { OperationsStore } from '../../../../operations/application/operations-store';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -24,7 +24,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './home.css',
 })
 export class Home {
-  readonly store = inject(RentingStore);
+  readonly store = inject(OperationsStore);
   protected router = inject(Router);
 
   displayedColumns: string[] = ['id', 'make', 'actions'];

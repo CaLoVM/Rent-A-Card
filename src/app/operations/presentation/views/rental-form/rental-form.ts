@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RentingStore } from '../../../application/renting-store';
+import { OperationsStore } from '../../../application/operations-store';
 import { Rental } from '../../../domain/model/rental.entity';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,7 +27,7 @@ export class RentalForm {
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private store = inject(RentingStore);
+  private store = inject(OperationsStore);
 
   form = this.fb.group({
     vehicleId: new FormControl<number | null>(null, {

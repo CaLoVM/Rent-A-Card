@@ -1,5 +1,5 @@
 import { BaseEntity } from '../../../shared/infrastructure/base-entity';
-import { Vehicle } from './vehicle.entity';
+import { Vehicle } from '../../../masters/domain/model/vehicle.entity';
 
 export class Rental implements BaseEntity {
   private _id: number;
