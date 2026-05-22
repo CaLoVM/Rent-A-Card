@@ -7,6 +7,9 @@
 
 <div class="home-container">
   <h1>{{ 'home.title'| translate }}</h1>
+  <p>Total Economy Daily Rate: {{ totalEconomyDailyRate() | currency }}</p>
+  <p>Total Economy Weighted Repair Cost: {{ totalEconomyWeightedRepairCost() | currency }}</p>
+  <p>Total Economy Rented Vehicles: {{ totalEconomyRentedCount() }}</p>
   <p class="welcome-text">{{ 'home.content'| translate }}</p>
 
   <div class="sections-wrapper">
@@ -16,26 +19,27 @@
 
       <mat-grid-list cols="3" rowHeight="180px" gutterSize="16px">
 
-        <mat-grid-tile *ngFor="let type of vehicleTypes">
+        <mat-grid-tile >
 
           <mat-card class="vehicle-stat-card">
             <mat-card-header>
-              <mat-card-title>{{ type.name }}</mat-card-title>
+              <mat-card-title>Economy</mat-card-title>
             </mat-card-header>
 
             <mat-card-content>
               <div class="stat-indicator">
                 <span class="stat-label">{{ 'home.card-content-1'| translate }}</span>
-                <span class="stat-value">{{ type.dailyRevenuePotential | currency }}</span>
+                <span class="stat-value">{{ totalEconomyDailyRate() | currency }}</span>
               </div>
 
               <div class="stat-indicator">
                 <span class="stat-label">{{ 'home.card-content-2'| translate }}</span>
-                <span class="stat-value">{{ type.estimatedIncidentCost | currency }}</span>
+                <span class="stat-value">{{ totalEconomyWeightedRepairCost() | currency }}</span>
               </div>
             </mat-card-content>
             <mat-card-footer>
               <p>{{ 'home.card-footer'| translate }}</p>
+              <span class="stat-value">{{ totalEconomyRentedCount() }}</span>
             </mat-card-footer>
           </mat-card>
 
@@ -46,11 +50,27 @@
     <section class="incident-section">
       <h2>{{ 'home.sub-title-2'| translate }}</h2>
 
-      <mat-card>
-        <mat-card-content>
-          <p class="no-incident-text">No urgent incidents reported at this time.</p>
-        </mat-card-content>
-      </mat-card>
+      @if (mostRecentNormalIncident()) {
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Incident</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p><strong>ID:</strong> {{ mostRecentNormalIncident()?.id }}</p>
+            <p><strong>Type:</strong> {{ mostRecentNormalIncident()?.incidentType }}</p>
+            <p><strong>Vehicle ID:</strong> {{ mostRecentNormalIncident()?.vehicleId }}</p>
+            <p><strong>Estimated Cost:</strong> {{ mostRecentNormalIncident()?.estimatedRepairCost | currency }}</p>
+            <p><strong>Priority:</strong> {{ mostRecentNormalIncident()?.priority }}</p>
+            <p><strong>Date:</strong> {{ mostRecentNormalIncident()?.registeredAt | date:'medium' }}</p>
+          </mat-card-content>
+        </mat-card>
+      } @else {
+        <mat-card>
+          <mat-card-content>
+            <p class="no-incident-text">No urgent incidents reported at this time.</p>
+          </mat-card-content>
+        </mat-card>
+      }
     </section>
 
   </div>

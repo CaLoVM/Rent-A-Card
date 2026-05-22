@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { computed, Signal, signal } from '@angular/core';
 import { Rental } from '../domain/model/rental.entity';
+import { Incident } from '../domain/model/incident.entity';
 import { Vehicle } from '../../masters/domain/model/vehicle.entity';
 import { OperationsApi } from '../infrastructure/operations-api';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -12,9 +13,11 @@ import { retry } from 'rxjs';
 export class OperationsStore {
   private readonly rentalsSignal = signal<Rental[]>([]);
   private readonly vehiclesSignal = signal<Vehicle[]>([]);
+  private readonly incidentsSignal = signal<Incident[]>([]);
 
   readonly rentals = this.rentalsSignal.asReadonly();
   readonly vehicles = this.vehiclesSignal.asReadonly();
+  readonly incidents = this.incidentsSignal.asReadonly();
 
   private readonly loadingSignal = signal<boolean>(false);
   readonly loading = this.loadingSignal.asReadonly();
@@ -24,10 +27,12 @@ export class OperationsStore {
 
   readonly rentalCount = computed(() => this.rentals().length);
   readonly vehicleCount = computed(() => this.vehicles().length);
+  readonly incidentCount = computed(() => this.incidents().length);
 
   constructor(private operationsApi: OperationsApi) {
     this.loadVehicles();
     this.loadRentals();
+    this.loadIncidents();
   }
 
   /**
@@ -40,6 +45,70 @@ export class OperationsStore {
   }
   getRentalById(id: number | null | undefined): Signal<Rental | undefined> {
     return computed(() => (id ? this.rentals().find((c) => c.id === id) : undefined));
+  }
+
+  /**
+   * Calculates the total daily rate for rented vehicles of a specific type.
+   * @param vehicleType - The type of vehicle to filter by.
+   * @returns A Signal containing the total daily rate.
+   */
+  getTotalRentedDailyRateByVehicleType(vehicleType: string): Signal<number> {
+    return computed(() =>
+      this.vehicles()
+        .filter((v) => v.status === 'RENTED' && v.vehicleType === vehicleType)
+        .reduce((acc, v) => acc + v.dailyRate, 0),
+    );
+  }
+
+  /**
+   * Gets the count of rented vehicles of a specific type.
+   * @param vehicleType - The type of vehicle to filter by.
+   * @returns A Signal containing the count of rented vehicles.
+   */
+  getRentedVehicleCountByType(vehicleType: string): Signal<number> {
+    return computed(
+      () =>
+        this.vehicles().filter((v) => v.status === 'RENTED' && v.vehicleType === vehicleType)
+          .length,
+    );
+  }
+
+  /**
+   * Calculates the weighted sum of estimated repair costs for incidents, filtered by vehicle type.
+   * Weight: HIGH = 2.0, NORMAL = 1.0. Rounded to 2 decimal places.
+   * @param vehicleType - The type of vehicle to filter by.
+   * @returns A Signal containing the total weighted cost.
+   */
+  getWeightedRepairCostByVehicleType(vehicleType: string): Signal<number> {
+    return computed(() => {
+      const total = this.incidents()
+        .filter((incident) => {
+          const vehicle = this.vehicles().find((v) => v.id === incident.vehicleId);
+          return vehicle?.vehicleType === vehicleType;
+        })
+        .reduce((acc, incident) => {
+          const weight = incident.priority === 'HIGH' ? 2.0 : 1.0;
+          return acc + incident.estimatedRepairCost * weight;
+        }, 0);
+      return Math.round(total * 100) / 100;
+    });
+  }
+
+  /**
+   * Gets the most recent incident with 'NORMAL' priority.
+   * @returns A Signal containing the most recent normal incident or undefined.
+   */
+  getMostRecentNormalIncident(): Signal<Incident | undefined> {
+    return computed(() => {
+      const normalIncidents = this.incidents().filter((i) => i.priority === 'NORMAL');
+      if (normalIncidents.length === 0) return undefined;
+
+      return normalIncidents.reduce((latest, current) => {
+        const latestDate = new Date(latest.registeredAt).getTime();
+        const currentDate = new Date(current.registeredAt).getTime();
+        return currentDate > latestDate ? current : latest;
+      });
+    });
   }
 
   /**
@@ -185,11 +254,24 @@ export class OperationsStore {
     return rental;
   }
 
+  private assignVehicleToIncident(incident: Incident): Incident {
+    const vehicleId = incident.vehicleId ?? 0;
+    incident.vehicle = vehicleId ? (this.getVehicleById(vehicleId)() ?? null) : null;
+    return incident;
+  }
+
   private assignVehiclesToRentals(): void {
     this.rentalsSignal.update((rentals) =>
       rentals.map((rental) => this.assignVehicleToRental(rental)),
     );
   }
+
+  private assignVehiclesToIncidents(): void {
+    this.incidentsSignal.update((incidents) =>
+      incidents.map((incident) => this.assignVehicleToIncident(incident)),
+    );
+  }
+
   /**
    * Loads all rentals from the API.
    */
@@ -214,7 +296,30 @@ export class OperationsStore {
   }
 
   /**
+   * Loads all incidents from the API.
+   */
+  private loadIncidents(): void {
+    this.loadingSignal.set(true);
+    this.errorSignal.set(null);
+    this.operationsApi
+      .getIncidents()
+      .pipe(takeUntilDestroyed())
+      .subscribe({
+        next: (incidents) => {
+          this.incidentsSignal.set(incidents);
+          this.loadingSignal.set(false);
+          this.assignVehiclesToIncidents();
+        },
+        error: (err) => {
+          this.errorSignal.set(this.formatError(err, 'Failed to load incidents'));
+          this.loadingSignal.set(false);
+        },
+      });
+  }
+
+  /**
    * Loads all vehicles from the API.
+
    */
   private loadVehicles(): void {
     this.loadingSignal.set(true);
@@ -233,37 +338,6 @@ export class OperationsStore {
         },
       });
   }
-
-  //CalculateDailyRevenuePotential(vehicleType: string){
-  //  const dailyRevenuePotential :number = 0;
-
-  //}
-
-  calculateRentedDailyRateByType(vehicles: Vehicle[]): Record<string, number> {
-    return (
-      vehicles
-        // 1. Filtramos solo los que tienen status "RENTED"
-        .filter((vehicle) => vehicle.status === 'RENTED')
-        // 2. Agrupamos y sumamos el dailyRate
-        .reduce(
-          (acc, vehicle) => {
-            const type = vehicle.vehicleType;
-
-            // Si el tipo de vehículo aún no existe en nuestro acumulador, lo inicializamos en 0
-            if (!acc[type]) {
-              acc[type] = 0;
-            }
-
-            // Sumamos el dailyRate al tipo correspondiente
-            acc[type] += vehicle.dailyRate;
-
-            return acc;
-          },
-          {} as Record<string, number>,
-        )
-    );
-  }
-
 
   /**
    * Formats error messages for user-friendly display.

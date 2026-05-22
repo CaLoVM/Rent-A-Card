@@ -29,6 +29,11 @@ export class Home {
 
   displayedColumns: string[] = ['id', 'make', 'actions'];
 
+  totalEconomyDailyRate = this.store.getTotalRentedDailyRateByVehicleType('ECONOMY');
+  totalEconomyWeightedRepairCost = this.store.getWeightedRepairCostByVehicleType('ECONOMY');
+  totalEconomyRentedCount = this.store.getRentedVehicleCountByType('ECONOMY');
+  mostRecentNormalIncident = this.store.getMostRecentNormalIncident();
+
   vehicleTypes = [
     { name: 'Economy', dailyRevenuePotential: 45.0, estimatedIncidentCost: 250.0 },
     { name: 'SUV', dailyRevenuePotential: 120.0, estimatedIncidentCost: 800.0 },
